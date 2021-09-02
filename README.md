@@ -19,7 +19,7 @@
  
 ### 提醒：
 
-1、有些KVM VPS仅提供较低的系统内核版本，如不能升级内核版本，建议DD到最新系统，可参考本[issues](https://github.com/YG-tsj/CFWarp-Pro/issues/11)，推荐ubuntu20、centos7、debain10以上。
+1、有些KVM VPS仅提供较低的系统内核版本，如不能升级内核版本，建议DD到最新系统，可参考本[issues](https://github.com/yangshuochina/CFWarp-Pro/issues/11)，推荐ubuntu20、centos7、debain10以上。
 
 2、不建议使用Docker，因为目前与WARP模式不兼容。
 
@@ -27,7 +27,7 @@
 
 4、OpenVZ、LXC架构的VPS并不集成在此脚本中。
 
-#### OpenVZ、LXC架构纯V6脚本:[EUserv 纯ipv6(OpenVZ、LXC架构VPS)WARP项目](https://github.com/YG-tsj/EUserv-warp)。
+#### OpenVZ、LXC架构纯V6脚本:[EUserv 纯ipv6(OpenVZ、LXC架构VPS)WARP项目](https://github.com/yangshuochina/EUserv-warp)。
 
 --------------------------------------------------------------------------------------------
 
@@ -94,12 +94,12 @@
 - **：支持X86/ARM架构的纯IPV4、纯IPV6、双栈IPV4+IPV6 VPS脚本**
 
 ```
-wget -N --no-check-certificate https://cdn.jsdelivr.net/gh/YG-tsj/CFWarp-Pro/multi.sh && chmod +x multi.sh && ./multi.sh
+wget -N --no-check-certificate https://cdn.jsdelivr.net/gh/yangshuochina/CFWarp-Pro/multi.sh && chmod +x multi.sh && ./multi.sh
 ```
 
 进入脚本快捷方式 ```bash multi.sh```
 
-- [刷新脚本](https://purge.jsdelivr.net/gh/YG-tsj/CFWarp-Pro/multi.sh)
+- [刷新脚本](https://purge.jsdelivr.net/gh/yangshuochina/CFWarp-Pro/multi.sh)
 
 ---------------------------------------------------------------------------------------------------
 

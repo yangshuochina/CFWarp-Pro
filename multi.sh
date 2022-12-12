@@ -102,7 +102,7 @@ esac
 v44=`ping ipv4.google.com -c 1 | grep received | awk 'NR==1 {print $4}'`
 
 if [[ ${v44} == "1" ]]; then
- v4=`wget -qO- -4 ip.gs` 
+ v4=`wget -qO- -4 ip.sb` 
  WARPIPv4Status=$(curl -s4 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2) 
  case ${WARPIPv4Status} in 
  on) 
@@ -119,7 +119,7 @@ WARPIPv4Status=$(red "不存在IPV4地址 ")
 v66=`ping ipv6.google.com -c 1 | grep received | awk 'NR==1 {print $4}'`
 
 if [[ ${v66} == "1" ]]; then
- v6=`wget -qO- -6 ip.gs` 
+ v6=`wget -qO- -6 ip.sb` 
  WARPIPv6Status=$(curl -s6 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2) 
  case ${WARPIPv6Status} in 
  on) 
@@ -198,7 +198,7 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
 grep -qE '^[ ]*precedence[ ]*::ffff:0:0/96[ ]*100' /etc/gai.conf || echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
-yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功啦！\n 如上方IPV4无IP显示,IPV6显示本地IP,则说明失败喽！！ "
 }
 
@@ -258,7 +258,7 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
 grep -qE '^[ ]*label[ ]*2002::/16[ ]*2' /etc/gai.conf || echo 'label 2002::/16   2' | sudo tee -a /etc/gai.conf
-yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV6地址：2a09:…………，则说明成功！\n 如上方IPV6显示本地IP，则说明失败喽！ "
 }
 
@@ -316,7 +316,7 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
 grep -qE '^[ ]*precedence[ ]*::ffff:0:0/96[ ]*100' /etc/gai.conf || echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
-yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如上方显示VPS本地IP,则说明失败喽！ "
 }
 
@@ -372,7 +372,7 @@ sudo cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV6地址：2a09:…………，则说明成功！\n 如上方无IP显示，则说明失败喽！ "
 }
 
@@ -429,7 +429,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功啦！\n 如上方IPV4显示本地IP,IPV6无ip显示，则说明失败喽！！ "
 }
 
@@ -487,7 +487,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如上方显示VPS本地IP,则说明失败喽！ "
 }
 
@@ -544,7 +544,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 如上方无IP显示,则说明失败喽！ "
 }
 
@@ -602,7 +602,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功啦！\n 如上方IPV4显示本地IP,IPV6显示本地IP，则说明失败喽！ "
 }
 
@@ -659,7 +659,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如上方显示VPS本地IP,则说明失败喽！ "
 }
 
@@ -712,7 +712,7 @@ curl -fsSL https://cdn.jsdelivr.net/gh/phlinhng/v2ray-tcp-tls-web@main/src/xwall
 
 function cv46(){
         yellow "开始检测IPV4地址"
-    v4=`wget -qO- -4 ip.gs`
+    v4=`wget -qO- -4 ip.sb`
     pingv4=$(ping -c 1 www.google.com| sed '2{s/[^(]*(//;s/).*//;q;}' | tail -n +2) 
         if [[ -z "${pingv4}" ]]; then 
         red " ---> VPS当前检测不到IPV4地址 " 
@@ -722,7 +722,7 @@ function cv46(){
     
     
     yellow "开始检测IPV6地址"
-    v6=`wget -qO- -6 ip.gs`
+    v6=`wget -qO- -6 ip.sb`
     pingv6=$(ping6 -c 1 www.google.com| sed '2{s/[^(]*(//;s/).*//;q;}' | tail -n +2) 
     if [[ -z "${pingv6}" ]]; then 
         red " ---> VPS当前检测不到IPV6地址 " 
@@ -929,7 +929,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 如上方无IP显示,则说明失败喽！ "
 }
 
@@ -960,7 +960,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功啦！\n 如上方IPV4无IP显示,IPV6显示本地IP，则说明失败喽！ "
 }
 
@@ -992,7 +992,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如上方显示VPS本地IP,则说明失败喽！ "
 }
 
@@ -1023,7 +1023,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 如上方无IP显示,则说明失败喽！ "
 }
 
@@ -1055,7 +1055,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功啦！\n 如上方IPV4无IP显示,IPV6显示本地IP，则说明失败喽！ "
 }
 
@@ -1086,7 +1086,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如上方显示VPS本地IP,则说明失败喽！ "
 }
 
@@ -1136,14 +1136,14 @@ curl -fsSL https://raw.staticdn.net/phlinhng/v2ray-tcp-tls-web/main/src/xwall.sh
 
 function cv46(){
         yellow "开始检测IPV4地址"
-    v4=`wget -qO- -4 ip.gs`
+    v4=`wget -qO- -4 ip.sb`
     if [[ -z $v4 ]]; then
         red " VPS当前检测不到IPV4地址 "
     else
         green " VPS当前正使用的IPV4地址: $v4 "
     fi
     yellow "开始检测IPV6地址"
-    v6=`wget -qO- -6 ip.gs`
+    v6=`wget -qO- -6 ip.sb`
     if [[ -z $v6 ]]; then
         red " VPS当前检测不到IPV6地址 "
     else
@@ -1256,7 +1256,7 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
 grep -qE '^[ ]*precedence[ ]*::ffff:0:0/96[ ]*100' /etc/gai.conf || echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
-yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动（IPV4+IPV6）双栈Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:…………，则说明成功啦！\n 如上方IPV4无IP显示,IPV6显示本地IP,则说明失败喽！！ "
 }
 
@@ -1290,7 +1290,7 @@ cp wgcf-profile.conf /etc/wireguard/wgcf.conf
 systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
-yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV6地址：$(wget -qO- -6 ip.sb) "
 green " 如上方显示IPV6地址：2a09:…………，则说明成功！\n 如上方无IP显示，则说明失败喽！ "
 }
 
@@ -1322,7 +1322,7 @@ systemctl enable wg-quick@wgcf
 systemctl start wg-quick@wgcf
 rm -f wgcf*
 grep -qE '^[ ]*precedence[ ]*::ffff:0:0/96[ ]*100' /etc/gai.conf || echo 'precedence ::ffff:0:0/96  100' | sudo tee -a /etc/gai.conf
-yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.gs) "
+yellow " 检测是否成功启动Warp！\n 显示IPV4地址：$(wget -qO- -4 ip.sb) "
 green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如上方显示VPS本地IP,则说明失败喽！ "
 }
 

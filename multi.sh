@@ -44,17 +44,17 @@ rred(){
 
 if ! type curl >/dev/null 2>&1; then
        yellow "curl 未安装，安装中 "
-           sudo apt update && apt install curl -y 
+           sudo apt update && apt install curl -y
            else
            green "curl 已安装，继续 "
 fi
 
         if ! type wget >/dev/null 2>&1; then
            yellow "wget 未安装 安装中 "
-           sudo apt update && apt install wget -y 
+           sudo apt update && apt install wget -y
            else
            green "wget 已安装，继续 "
-fi  
+fi
 
 bit=`uname -m`
 version=`uname -r | awk -F "-" '{print $1}'`
@@ -83,10 +83,10 @@ fi
 yellow " VPS相关信息如下："
     white "------------------------------------------"
     blue " 操作系统名称 -$op "
-    blue " 系统内核版本 - $version " 
+    blue " 系统内核版本 - $version "
     blue " CPU架构名称  - $bit "
     blue " 虚拟架构类型 -$vi "
-    white " -----------------------------------------------" 
+    white " -----------------------------------------------"
 sleep 1s
 
 warpwg=$(systemctl is-active wg-quick@wgcf)
@@ -102,37 +102,37 @@ esac
 v44=`ping ipv4.google.com -c 1 | grep received | awk 'NR==1 {print $4}'`
 
 if [[ ${v44} == "1" ]]; then
- v4=`wget -qO- -4 ip.sb` 
- WARPIPv4Status=$(curl -s4 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2) 
- case ${WARPIPv4Status} in 
- on) 
- WARPIPv4Status=$(green "WARP已开启,当前IPV4地址：$v4 ") 
- ;; 
- off) 
- WARPIPv4Status=$(yellow "WARP未开启，当前IPV4地址：$v4 ") 
- esac 
+ v4=`wget -qO- -4 ip.sb`
+ WARPIPv4Status=$(curl -s4 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2)
+ case ${WARPIPv4Status} in
+ on)
+ WARPIPv4Status=$(green "WARP已开启,当前IPV4地址：$v4 ")
+ ;;
+ off)
+ WARPIPv4Status=$(yellow "WARP未开启，当前IPV4地址：$v4 ")
+ esac
 else
 WARPIPv4Status=$(red "不存在IPV4地址 ")
 
- fi 
+ fi
 
 v66=`ping ipv6.google.com -c 1 | grep received | awk 'NR==1 {print $4}'`
 
 if [[ ${v66} == "1" ]]; then
- v6=`wget -qO- -6 ip.sb` 
- WARPIPv6Status=$(curl -s6 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2) 
- case ${WARPIPv6Status} in 
- on) 
- WARPIPv6Status=$(green "WARP已开启,当前IPV6地址：$v6 ") 
- ;; 
- off) 
- WARPIPv6Status=$(yellow "WARP未开启，当前IPV6地址：$v6 ") 
- esac 
+ v6=`wget -qO- -6 ip.sb`
+ WARPIPv6Status=$(curl -s6 https://www.cloudflare.com/cdn-cgi/trace | grep warp | cut -d= -f2)
+ case ${WARPIPv6Status} in
+ on)
+ WARPIPv6Status=$(green "WARP已开启,当前IPV6地址：$v6 ")
+ ;;
+ off)
+ WARPIPv6Status=$(yellow "WARP未开启，当前IPV6地址：$v6 ")
+ esac
 else
 WARPIPv6Status=$(red "不存在IPV6地址 ")
 
- fi 
- 
+ fi
+
 Print_ALL_Status_menu() {
 blue "-----------------------"
 blue "WGCF 运行状态\t: ${WireGuardStatus}"
@@ -145,7 +145,7 @@ if [[ ${bit} == "x86_64" ]]; then
 
 function wo646(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -154,7 +154,7 @@ if [ $release = "Centos" ]
     then
             yum update -y
                 yum install curl wget -y && yum install sudo -y
-        yum install epel-release -y        
+        yum install epel-release -y
         yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
@@ -204,7 +204,7 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 
 function wo66(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -213,7 +213,7 @@ if [ $release = "Centos" ]
     then
             yum update -y
                 yum install curl wget -y && yum install sudo -y
-        yum install epel-release -y        
+        yum install epel-release -y
         yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
@@ -264,7 +264,7 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功！\n 如
 
 function wo64(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -273,7 +273,7 @@ if [ $release = "Centos" ]
     then
             yum update -y
                 yum install curl wget -y && yum install sudo -y
-        yum install epel-release -y        
+        yum install epel-release -y
         yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
@@ -322,7 +322,7 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 
 function warp6(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -331,7 +331,7 @@ if [ $release = "Centos" ]
     then
             yum update -y
                 yum install curl wget -y && yum install sudo -y
-        yum install epel-release -y        
+        yum install epel-release -y
         yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
@@ -378,7 +378,7 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功！\n 如
 
 function warp64(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -387,7 +387,7 @@ if [ $release = "Centos" ]
     then
             yum update -y
                 yum install curl wget -y && yum install sudo -y
-        yum install epel-release -y        
+        yum install epel-release -y
         yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
@@ -435,7 +435,7 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 
 function warp4(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -444,7 +444,7 @@ if [ $release = "Centos" ]
     then
             yum update -y
                 yum install curl wget -y && yum install sudo -y
-        yum install epel-release -y        
+        yum install epel-release -y
         yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
@@ -493,7 +493,7 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 
 function warp466(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -502,7 +502,7 @@ if [ $release = "Centos" ]
     then
             yum update -y
                 yum install curl wget -y && yum install sudo -y
-        yum install epel-release -y        
+        yum install epel-release -y
         yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
@@ -550,7 +550,7 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 
 function warp4646(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -559,7 +559,7 @@ if [ $release = "Centos" ]
     then
             yum update -y
                 yum install curl wget -y && yum install sudo -y
-        yum install epel-release -y        
+        yum install epel-release -y
         yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
@@ -608,7 +608,7 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 
 function warp464(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -617,7 +617,7 @@ if [ $release = "Centos" ]
     then
             yum update -y
                 yum install curl wget -y && yum install sudo -y
-        yum install epel-release -y        
+        yum install epel-release -y
         yum install -y \
                 https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
                 curl -o /etc/yum.repos.d/jdoss-wireguard-epel-7.repo \
@@ -713,26 +713,26 @@ curl -fsSL https://cdn.jsdelivr.net/gh/phlinhng/v2ray-tcp-tls-web@main/src/xwall
 function cv46(){
         yellow "开始检测IPV4地址"
     v4=`wget -qO- -4 ip.sb`
-    pingv4=$(ping -c 1 www.google.com| sed '2{s/[^(]*(//;s/).*//;q;}' | tail -n +2) 
-        if [[ -z "${pingv4}" ]]; then 
-        red " ---> VPS当前检测不到IPV4地址 " 
+    pingv4=$(ping -c 1 www.google.com| sed '2{s/[^(]*(//;s/).*//;q;}' | tail -n +2)
+        if [[ -z "${pingv4}" ]]; then
+        red " ---> VPS当前检测不到IPV4地址 "
     else
     green " VPS当前正使用的IPV4地址: $v4 "
     fi
-    
-    
+
+
     yellow "开始检测IPV6地址"
     v6=`wget -qO- -6 ip.sb`
-    pingv6=$(ping6 -c 1 www.google.com| sed '2{s/[^(]*(//;s/).*//;q;}' | tail -n +2) 
-    if [[ -z "${pingv6}" ]]; then 
-        red " ---> VPS当前检测不到IPV6地址 " 
+    pingv6=$(ping6 -c 1 www.google.com| sed '2{s/[^(]*(//;s/).*//;q;}' | tail -n +2)
+    if [[ -z "${pingv6}" ]]; then
+        red " ---> VPS当前检测不到IPV6地址 "
     else
     green " VPS当前正使用的IPV6地址: $v6 "
     fi
 }
 
 function Netflix(){
-wget -O nf https://cdn.jsdelivr.net/gh/sjlleo/netflix-verify/CDNRelease/nf_2.61_linux_amd64 && chmod +x nf && clear && ./nf -method full
+wget -O nf https://github.com/sjlleo/netflix-verify/releases/download/v3.1.0-1/nf_$(uname -s | tr A-Z a-z)-$(uname -m) && chmod +x nf && clear && ./nf -method full
 }
 
 function reboot(){
@@ -764,66 +764,66 @@ wget -6 -N --no-check-certificate https://raw.githubusercontent.com/yangshuochin
 #主菜单
 function start_menu(){
     clear
-    yellow " 详细说明 https://github.com/yangshuochina/CFWarp-Pro  YouTube频道：甬哥侃侃侃" 
-    
+    yellow " 详细说明 https://github.com/yangshuochina/CFWarp-Pro  YouTube频道：甬哥侃侃侃"
+
     red " 切记：进入脚本快捷方式 bash multi.sh "
-    
-    white " ==================一、VPS相关调整选择（更新中）==========================================" 
-    
+
+    white " ==================一、VPS相关调整选择（更新中）=========================================="
+
     green " 1. 永久开启甲骨文VPS的ubuntu系统所有端口 "
-    
+
     green " 2. 更新系统内核 "
-    
+
     green " 3. 开启原生BBR加速 "
-    
+
     green " 4. 检测奈飞Netflix是否解锁 "
-    
+
     white " ==================二、“内核集成模式”WARP功能选择（更新中）======================================"
-    
+
     yellow " ----VPS原生IP数------------------------------------添加WARP虚拟IP的位置--------------"
-    
+
     green " 5. 纯IPV4的VPS。                                   添加WARP虚拟IPV6               "
-    
+
     green " 6. 纯IPV4的VPS。                                   添加WARP虚拟IPV4+虚拟IPV6      "
-    
+
     green " 7. 纯IPV4的VPS。                                   添加WARP虚拟IPV4              "
-    
+
     green " 8. 双栈IPV4+IPV6的VPS。                            添加WARP虚拟IPV6               "
-    
+
     green " 9. 双栈IPV4+IPV6的VPS。                            添加WARP虚拟IPV4+虚拟IPV6      "
-    
+
     green " 10. 双栈IPV4+IPV6的VPS。                           添加WARP虚拟IPV4               "
-    
+
     green " 11. 纯IPV6的VPS。                                  添加WARP虚拟IPV6               "
-    
+
     green " 12. 纯IPV6的VPS。                                  添加WARP虚拟IPV4+虚拟IPV6       "
-    
+
     green " 13. 纯IPV6的VPS。                                  添加WARP虚拟IPV4               "
-    
+
     white " ------------------------------------------------------------------------------------------------"
-    
+
     green " 14. 统一DNS功能 "
-    
+
     green " 15. 永久关闭WARP功能 "
-    
+
     green " 16. 自动开启WARP功能 "
-    
+
     green " 17. 有IPV4：更新脚本 "
-    
+
     green " 18. 无IPV4：更新脚本 "
-    
+
     white " ==================三、代理协议脚本选择（更新中）==========================================="
-    
+
     green " 19.使用mack-a脚本（支持Xray, V2ray） "
-    
+
     green " 20.使用phlinhng脚本（支持Xray, Trojan-go, SS+v2ray-plugin） "
-    
+
     white " ============================================================================================="
-    
+
     green " 21. 重启VPS实例，请重新连接SSH "
-    
-    white " ===============================================================================================" 
-    
+
+    white " ==============================================================================================="
+
     green " 0. 退出脚本 "
     Print_ALL_Status_menu
     echo
@@ -840,7 +840,7 @@ function start_menu(){
     ;;
     4 )
            Netflix
-    ;;    
+    ;;
         5 )
            warp6
     ;;
@@ -899,12 +899,12 @@ function start_menu(){
 }
 
 
-start_menu "first"  
+start_menu "first"
 
 elif [[ ${bit} == "aarch64" ]]; then
 
 function warp6(){
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
     exit 1
 fi
@@ -934,7 +934,7 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp64(){
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
     exit 1
 fi
@@ -965,7 +965,7 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp4(){
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
     exit 1
 fi
@@ -997,7 +997,7 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 }
 
 function warp466(){
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
     exit 1
 fi
@@ -1028,7 +1028,7 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功啦！\n 
 }
 
 function warp4646(){
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
     exit 1
 fi
@@ -1060,7 +1060,7 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 }
 
 function warp464(){
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，更新内核吧"
     exit 1
 fi
@@ -1173,7 +1173,7 @@ function arm5.11(){
 function v46(){
 cd /tmp
 wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/arm64/linux-headers-5.11.0-051100-generic_5.11.0-051100.202102142330_arm64.deb
-wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/arm64/linux-image-unsigned-5.11.0-051100-generic_5.11.0-051100.202102142330_arm64.deb 
+wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/arm64/linux-image-unsigned-5.11.0-051100-generic_5.11.0-051100.202102142330_arm64.deb
 wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/arm64/linux-modules-5.11.0-051100-generic_5.11.0-051100.202102142330_arm64.deb
 sudo dpkg -i *.deb
 sudo apt -f install -y
@@ -1184,7 +1184,7 @@ function v6(){
 echo -e nameserver 2a00:1098:2c::1 > /etc/resolv.conf
 cd /tmp
 wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/arm64/linux-headers-5.11.0-051100-generic_5.11.0-051100.202102142330_arm64.deb
-wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/arm64/linux-image-unsigned-5.11.0-051100-generic_5.11.0-051100.202102142330_arm64.deb 
+wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/arm64/linux-image-unsigned-5.11.0-051100-generic_5.11.0-051100.202102142330_arm64.deb
 wget --no-check-certificate -c https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.11/arm64/linux-modules-5.11.0-051100-generic_5.11.0-051100.202102142330_arm64.deb
 sudo dpkg -i *.deb
 sudo apt -f install -y
@@ -1193,13 +1193,13 @@ sudo reboot
 
 function menu(){
     clear
-    green " 请确认当前的VPS属于以下哪种IP表现形式！" 
-    blue " 1. 纯IPV4/双栈IPV4+IPV6 "    
+    green " 请确认当前的VPS属于以下哪种IP表现形式！"
+    blue " 1. 纯IPV4/双栈IPV4+IPV6 "
     blue " 2. 纯IPV6 "
     red " 0. 返回上一层 "
     echo
     read -p "请输入数字:" menuNumberInput
-    case "$menuNumberInput" in   
+    case "$menuNumberInput" in
      1 )
         v46
      ;;
@@ -1212,7 +1212,7 @@ function menu(){
       esac
 }
 
-menu  
+menu
 }
 
 function status(){
@@ -1230,7 +1230,7 @@ wget -6 -N --no-check-certificate https://raw.githubusercontent.com/yangshuochin
 
 function wro646(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -1264,7 +1264,7 @@ green " 如上方显示IPV4地址：8.…………，IPV6地址：2a09:………
 
 function wro66(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -1297,7 +1297,7 @@ green " 如上方显示IPV6地址：2a09:…………，则说明成功！\n 如
 
 function wro64(){
 yellow " 检测系统内核版本是否大于5.6版本 "
-if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then 
+if [ "$main" -lt 5 ]|| [ "$minor" -lt 6 ]; then
     red " 检测到内核版本小于5.6，回到菜单，选择2，自动更新内核吧"
     exit 1
 fi
@@ -1330,65 +1330,65 @@ green " 如上方显示IPV4地址：8.…………，则说明成功啦！\n 如
 #主菜单
 function start_menu(){
     clear
-    
-    yellow " 详细说明 https://github.com/yangshuochina/CFWarp-Pro  YouTube频道：甬哥侃侃侃" 
-    
+
+    yellow " 详细说明 https://github.com/yangshuochina/CFWarp-Pro  YouTube频道：甬哥侃侃侃"
+
     red " 切记：进入脚本快捷方式 bash multi.sh "
-    
-    white " ================一、VPS调整选择（更新中）==============================================" 
-    
+
+    white " ================一、VPS调整选择（更新中）=============================================="
+
     green " 1. 永久开启甲骨文VPS的ubuntu系统所有端口 "
-    
+
     green " 2. 更新ARM架构Ubuntu系统内核至5.11版 "
-    
+
     green " 3. 开启原生BBR加速 "
-    
+
     green " 4. 检测奈飞Netflix是否解锁 "
-    
+
     white " ================二、“内核集成模式”WARP功能选择（更新中）=================================="
-    
+
     white " ----VPS原生IP数-------------------------------------添加WARP虚拟IP的位置----------"
-    
-    green " 5. 纯IPV4的VPS。                                    添加WARP虚拟IPV6          "     
-    
-    green " 6. 纯IPV4的VPS。                                    添加WARP虚拟IPV4+虚拟IPV6  "   
-    
-    green " 7. 纯IPV4的VPS。                                    添加WARP虚拟IPV4            "  
-    
-    green " 8. 双栈IPV4+IPV6的VPS。                             添加WARP虚拟IPV6             " 
-    
-    green " 9. 双栈IPV4+IPV6的VPS。                             添加WARP虚拟IPV4+虚拟IPV6     " 
-    
+
+    green " 5. 纯IPV4的VPS。                                    添加WARP虚拟IPV6          "
+
+    green " 6. 纯IPV4的VPS。                                    添加WARP虚拟IPV4+虚拟IPV6  "
+
+    green " 7. 纯IPV4的VPS。                                    添加WARP虚拟IPV4            "
+
+    green " 8. 双栈IPV4+IPV6的VPS。                             添加WARP虚拟IPV6             "
+
+    green " 9. 双栈IPV4+IPV6的VPS。                             添加WARP虚拟IPV4+虚拟IPV6     "
+
     green " 10. 双栈IPV4+IPV6的VPS。                            添加WARP虚拟IPV4               "
-    
+
     green " 11. 纯IPV6的VPS。                                  添加WARP虚拟IPV6               "
-    
+
     green " 12. 纯IPV6的VPS。                                  添加WARP虚拟IPV4+虚拟IPV6       "
-    
+
     green " 13. 纯IPV6的VPS。                                  添加WARP虚拟IPV4               "
-    
+
     white " ------------------------------------------------------------------------------------------------"
-    
+
     green " 14. 统一DNS功能 "
-    
+
     green " 15. 永久关闭WARP功能 "
-    
+
     green " 16. 自动开启WARP功能 "
-    
+
     green " 17. 有IPV4：更新脚本 "
-    
+
     green " 18. 无IPV4：更新脚本 "
-    
+
     white " ===============三、代理协议脚本选择（更新中）==========================================="
-    
+
     green " 19.使用mack-a脚本（支持ARM架构VPS，支持协议：Xray, V2ray） "
-    
+
     white " ============================================================================================="
-    
+
     green " 20. 重启VPS实例，请重新连接SSH "
-    
-    white " =============================================================================================" 
-    
+
+    white " ============================================================================================="
+
     green " 0. 退出脚本 "
     Print_ALL_Status_menu
     echo
@@ -1405,7 +1405,7 @@ function start_menu(){
     ;;
     4 )
            Netflix
-    ;;    
+    ;;
         5 )
            warp6
     ;;
@@ -1461,7 +1461,7 @@ function start_menu(){
 }
 
 
-start_menu "first"  
+start_menu "first"
 
 else
  yellow "此CPU架构不是X86,也不是ARM！奥特曼架构？"

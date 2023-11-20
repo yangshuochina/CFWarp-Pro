@@ -732,7 +732,7 @@ function cv46(){
 }
 
 function Netflix(){
-wget -O nf https://github.com/sjlleo/netflix-verify/releases/download/v3.1.0-1/nf_$(uname -s | tr A-Z a-z)-$(uname -m) && chmod +x nf && clear && ./nf -method full
+wget -O nf https://github.com/sjlleo/netflix-verify/releases/download/v3.1.0-1/nf_$(uname -s | tr A-Z a-z)_$(uname -m) && chmod +x nf && clear && ./nf -method full
 }
 
 function reboot(){

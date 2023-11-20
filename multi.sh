@@ -732,9 +732,9 @@ function cv46(){
 }
 
 function Netflix(){
-    if [$(uname -m) = "x86_64"]; then
+    if [$(uname -m) == "x86_64"]; then
         wget -O nf https://github.com/sjlleo/netflix-verify/releases/download/v3.1.0-1/nf_$(uname -s | tr A-Z a-z)_amd64 && chmod +x nf && clear && ./nf -method full
-    elif [$(uname -m) = "aarch64"]; then
+    elif [$(uname -m) == "aarch64"]; then
         wget -O nf https://github.com/sjlleo/netflix-verify/releases/download/v3.1.0-1/nf_$(uname -s | tr A-Z a-z)_arm64 && chmod +x nf && clear && ./nf -method full
     fi
 }
